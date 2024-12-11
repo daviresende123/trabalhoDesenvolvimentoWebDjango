@@ -1,0 +1,71 @@
+# Sistema Operacional
+# Arquivos do Windows
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Ambientes Virtuais
+venv/
+ENV/
+env/
+
+# Arquivos Python
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+*.pdb
+
+# Configurações Django
+db.sqlite3
+*.log
+*.pot
+*.py[co]
+
+# Arquivos do VS Code
+.vscode/
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Migrations automáticas (geradas por Django)
+**/migrations/
+
+# Arquivos de cobertura de testes
+htmlcov/
+*.cover
+*.coverage
+.tox
+.coverage.*
+
+# Arquivos de cache
+*.egg-info/
+*.egg
+.eggs/
+
+# Logs e depurações
+*.log
+*.out
+*.err
+
+# Arquivos gerados
+*.bak
+*.swp
+*.tmp
+*.backup
+*.gz
+*.tar
+*.zip
+
+# Arquivos estáticos e mídia (se gerados localmente)
+staticfiles/
+media/
+
+# Arquivos do Editor
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Outras Configurações Locais
+local_settings.py
+.env
