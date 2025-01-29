@@ -1,0 +1,14 @@
+{% extends "locadora/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Alugar Filme: {{ filme.titulo }}</h2>
+    <p>Gênero: {{ filme.genero }}</p>
+    <p>Descrição: {{ filme.descricao }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Confirmar Aluguel</button>
+        <a href="{% url 'listar_filmes' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

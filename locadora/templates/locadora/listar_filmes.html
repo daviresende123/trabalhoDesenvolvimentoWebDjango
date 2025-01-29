@@ -1,0 +1,18 @@
+{% extends "locadora/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Filmes Disponíveis</h2>
+    <ul class="list-group">
+        {% for filme in filmes %}
+            <li class="list-group-item">
+                {{ filme.titulo }} - {{ filme.genero }}
+                <a href="{% url 'alugar_filme' filme.id %}" class="btn btn-primary btn-sm float-end">Alugar</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhum filme disponível no momento.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'perfil' %}" class="btn btn-secondary mt-3">Voltar ao Perfil</a>
+</div>
+{% endblock %}
