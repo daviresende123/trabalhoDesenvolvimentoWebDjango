@@ -124,3 +124,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = 'perfil'  # Nome da URL para a página de perfil
+
+LOGOUT_REDIRECT_URL = 'login'  # Nome da URL para a página de login
