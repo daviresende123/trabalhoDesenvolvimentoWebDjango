@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from .forms import RegistrarForm  # Importe o formulário personalizado
 
 def home(request):
     return render(request, 'locadora/home.html')
@@ -12,14 +13,11 @@ def perfil(request):
 
 def registrar(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrarForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
+            user = form.save()
+            login(request, user)  # Faz login automaticamente após o registro
+            return redirect('home')  # Redireciona para a página inicial
     else:
-        form = UserCreationForm()
+        form = RegistrarForm()
     return render(request, 'registration/registrar.html', {'form': form})
