@@ -17,7 +17,7 @@ def registrar(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Faz login automaticamente após o registro
-            return redirect('home')  # Redireciona para a página inicial
+            return redirect('login')  # Redireciona para a tela de login
     else:
         form = RegistrarForm()
     return render(request, 'registration/registrar.html', {'form': form})
