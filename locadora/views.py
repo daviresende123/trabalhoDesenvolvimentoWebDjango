@@ -3,8 +3,9 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrarForm  # Importe o formulário personalizado
-from .models import Filme, Locacao
+from .models import Filme, Locacao, Cliente
 from django.utils import timezone
+from django.contrib import messages
 
 def home(request):
     return render(request, 'locadora/home.html')
@@ -34,14 +35,20 @@ def listar_filmes(request):
 def alugar_filme(request, filme_id):
     filme = get_object_or_404(Filme, id=filme_id, disponivel=True)  # Verifica se o filme está disponível
     if request.method == 'POST':
+        # Verifica se o usuário logado tem um objeto Cliente associado
+        cliente, created = Cliente.objects.get_or_create(user=request.user)
+        
         # Cria uma nova locação
         Locacao.objects.create(
-            cliente=request.user,
+            cliente=cliente,  # Usa o objeto Cliente associado ao usuário
             filme=filme,
             data_locacao=timezone.now(),
             devolvido=False
         )
         filme.disponivel = False  # Marca o filme como indisponível
         filme.save()
+
+        # Exibe uma mensagem de sucesso
+        messages.success(request, 'Locação feita com sucesso!')
         return redirect('perfil')  # Redireciona para o perfil após o aluguel
     return render(request, 'locadora/alugar_filme.html', {'filme': filme})
